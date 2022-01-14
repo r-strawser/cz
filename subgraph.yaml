@@ -1,0 +1,41 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CryptoZooBaseAnimal
+    network: mainnet
+    source:
+      address: "0x9BE46EFa5E99dE9b1bA7219f90C8b77293d83255"
+      abi: CryptoZooBaseAnimal
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - OwnershipTransferred
+        - Transfer
+        - animalTokenURIUpdated
+        - burned
+        - hatched
+      abis:
+        - name: CryptoZooBaseAnimal
+          file: ./abis/CryptoZooBaseAnimal.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: animalTokenURIUpdated(uint256,address,string)
+          handler: handleanimalTokenURIUpdated
+        - event: burned(uint256,address)
+          handler: handleburned
+        - event: hatched(uint256,address,address)
+          handler: handlehatched
+      file: ./src/mapping.ts
