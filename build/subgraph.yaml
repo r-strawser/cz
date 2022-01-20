@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: CryptoZooBaseAnimal
@@ -19,10 +19,10 @@ dataSources:
         - HatchedEvent
       abis:
         - name: CryptoZooBaseAnimal
-          file: ./abis/CryptoZooBaseAnimal.json
+          file: CryptoZooBaseAnimal/abis/CryptoZooBaseAnimal.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
         - event: hatched(uint256,address,address)
           handler: handlehatched
-      file: ./src/mapping.ts
+      file: CryptoZooBaseAnimal/CryptoZooBaseAnimal.wasm
